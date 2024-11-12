@@ -1,0 +1,76 @@
+{
+  "name": "BizTestNet",
+  "logoURI": "static:/images/logos/biznet-logo-blue-100.svg",
+  "keywords": ["boa", "tokens", "points"],
+  "timestamp": "2022-05-10T00:00:00+00:00",
+  "tokens": [
+    {
+      "address": "0x8C8c1E699144b7Bdc22AeC316491cF78258A1E04",
+      "chainId": 11155111,
+      "name": "BOSAGORA",
+      "symbol": "BOA",
+      "decimals": 7,
+      "tags": ["TOKEN"],
+      "logoURI": "https://raw.githubusercontent.com/bosagora/token-list/v0.x.x/src/assets/logo-boa.svg"
+    },
+    {
+      "address": "0xc01Ee7f10EA4aF4673cFff62710E1D7792aBa8f3",
+      "chainId": 31337,
+      "name": "BOSAGORA",
+      "symbol": "BOA",
+      "decimals": 7,
+      "tags": ["TOKEN"],
+      "logoURI": "https://raw.githubusercontent.com/bosagora/token-list/v0.x.x/src/assets/logo-boa.svg"
+    },
+    {
+      "address": "0x3584542bE45492d0C119f1A956e8c581C86928d1",
+      "chainId": 2019,
+      "name": "SMA",
+      "symbol": "SMA",
+      "decimals": 10,
+      "tags": ["TOKEN", "BRIDGE"],
+      "logoURI": "https://raw.githubusercontent.com/bosagora/token-list/v0.x.x/src/assets/logo-ecotoken.svg"
+    },
+    {
+      "address": "0x9F561fAD8584B226aD4e9BCF9b0136544309f5e6",
+      "chainId": 11155111,
+      "name": "SMA",
+      "symbol": "SMA",
+      "decimals": 10,
+      "tags": ["TOKEN", "BRIDGE"],
+      "logoURI": "https://raw.githubusercontent.com/bosagora/token-list/v0.x.x/src/assets/logo-ecotoken.svg"
+    },
+    {
+      "address": "0xe752FD1eA7A76f8A515d93Ec8fa18ae16a6C675B",
+      "chainId": 2019,
+      "name": "SMB",
+      "symbol": "SMB",
+      "decimals": 10,
+      "tags": ["TOKEN"],
+      "logoURI": "https://raw.githubusercontent.com/bosagora/token-list/v0.x.x/src/assets/logo-gametoken.svg"
+    },
+    {
+      "address": "0x0422f4a5a81651201eF850A0143bB19c227B3e8d",
+      "chainId": 11155111,
+      "name": "SMB",
+      "symbol": "SMB",
+      "decimals": 10,
+      "tags": ["TOKEN"],
+      "logoURI": "https://raw.githubusercontent.com/bosagora/token-list/v0.x.x/src/assets/logo-gametoken.svg"
+    },
+    {
+      "address": "0xBeE4c0a18B955e1BDde21aF7619f99A83a2c5430",
+      "chainId": 2019,
+      "name": "FINPL",
+      "symbol": "FNP",
+      "decimals": 18,
+      "tags": ["TOKEN"],
+      "logoURI": "https://raw.githubusercontent.com/bosagora/token-list/v0.x.x/src/assets/logo-finpl.png"
+    }
+  ],
+  "version": {
+    "major": 1,
+    "minor": 5,
+    "patch": 1
+  }
+}
