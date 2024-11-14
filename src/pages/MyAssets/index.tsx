@@ -10,7 +10,7 @@ import { TransactionDetails } from "../../state/transactions/reducer";
 // import styled from 'styled-components'
 import { CurrencySearchForAssets } from "../../components/SearchModal/CurrencySearch";
 import TxtDesc from "../../components/TxtDesc";
-import { Currency } from "bizboa-swap-sdk";
+import { Currency } from "tigger-swap-sdk";
 import { useHistory } from "react-router-dom";
 import { WrappedTokenInfo } from "../../state/lists/hooks";
 

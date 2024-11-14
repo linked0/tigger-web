@@ -1,4 +1,4 @@
-import { ChainId, Token } from "bizboa-swap-sdk";
+import { ChainId, Token } from "tigger-swap-sdk";
 import { Tags, TokenList, TokenInfo as TokenInfoOrigin } from "@uniswap/token-lists";
 import { useMemo } from "react";
 import { useSelector } from "react-redux";

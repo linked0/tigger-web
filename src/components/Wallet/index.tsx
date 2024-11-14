@@ -1,7 +1,7 @@
 import React, { useCallback, useRef } from "react";
 import { isMobile } from "react-device-detect";
 import { useActiveWeb3React } from "../../hooks";
-import { ChainId } from "bizboa-swap-sdk";
+import { ChainId } from "tigger-swap-sdk";
 import styled from "styled-components";
 
 import { useOnClickOutside } from "../../hooks/useOnClickOutside";
@@ -170,25 +170,25 @@ export const NETWORK_LABELS: { [chainId in ChainId]: string[] } = {
     "http://127.0.0.1:9933"
   ],
   [ChainId.SEPOLIA]: [
-    "Sepolia",
+    "Marigold",
     "ico-eth",
     STAGE === "LOCAL" ? "invisible" : STAGE === "PROD" ? "invisible" : "visible",
-    "0xAA36A7",
+    "12301",
     "Ethereum ETH",
     "ETH",
     "18",
-    "http://127.0.0.1:9933",
+    "http://localhost:8545",
     "https://sepolia.etherscan.io"
   ],
   [ChainId.BIZTESTNET]: [
-    "BizTestNet",
+    "PoohTestNet",
     "ico-boa",
     STAGE === "LOCAL" ? "invisible" : STAGE === "PROD" ? "invisible" : "visible",
-    "0x7E3",
-    "Bosagora BOA",
-    "BOA",
+    "7212302",
+    "Poohnet POO",
+    "POO",
     "18",
-    "https://testnet.bosagora.org",
+    "http://3.37.37.195:8545",
     "https://testnet-scan.bosagora.org"
   ],
   [ChainId.BIZNET]: [
@@ -211,7 +211,6 @@ interface CurProps {
 export async function changeNetwork(id: string, onChangeBridge: ((chainId: string) => void) | undefined) {
   const { ethereum } = window;
   const hexId = NETWORK_LABELS[parseInt(id) as ChainId][3]; //'0x' + parseInt(id).toString(16)
-  console.log("chainId :", hexId);
   if (ethereum) {
     try {
       // @ts-ignore
@@ -259,11 +258,16 @@ export async function changeNetwork(id: string, onChangeBridge: ((chainId: strin
 }
 export default function Wallet({ selectedChainId, onChangeBridge }: CurProps) {
   const { chainId } = useActiveWeb3React();
+  let currentChainId = chainId as ChainId;
+  if (currentChainId === undefined) {
+    selectedChainId = ChainId.SEPOLIA;
+    currentChainId = ChainId.SEPOLIA;
+  }
 
   const node = useRef<HTMLDivElement>();
   const [open, toggle] = useToggle(false);
   const { t } = useTranslation();
-  const isInput = selectedChainId === chainId;
+  const isInput = selectedChainId === currentChainId;
 
   useOnClickOutside(node, open ? toggle : undefined);
   const changeNet = useCallback(
@@ -281,15 +285,15 @@ export default function Wallet({ selectedChainId, onChangeBridge }: CurProps) {
       {selectedChainId ? (
         <ButtonWhiteIco onClick={toggle}>
           <NetworkCard>
-            <IcoItem className={chainId ? NETWORK_LABELS[selectedChainId][1] : "ico-wrong"} />{" "}
-            {!isMobile && chainId && t(NETWORK_LABELS[selectedChainId][0])}
+            <IcoItem className={currentChainId ? NETWORK_LABELS[selectedChainId][1] : "ico-wrong"} />{" "}
+            {!isMobile && currentChainId && t(NETWORK_LABELS[selectedChainId][0])}
           </NetworkCard>
         </ButtonWhiteIco>
       ) : (
         <ButtonWhiteIco onClick={toggle}>
           <NetworkCard>
-            <IcoItem className={chainId ? NETWORK_LABELS[chainId][1] : "ico-wrong"} />{" "}
-            {!isMobile && chainId && t(NETWORK_LABELS[chainId][0])}
+            <IcoItem className={currentChainId ? NETWORK_LABELS[currentChainId][1] : "ico-wrong"} />{" "}
+            {!isMobile && currentChainId && t(NETWORK_LABELS[currentChainId][0])}
           </NetworkCard>
         </ButtonWhiteIco>
       )}
@@ -301,7 +305,7 @@ export default function Wallet({ selectedChainId, onChangeBridge }: CurProps) {
                 <MenuItem2
                   id="link"
                   key={i}
-                  className={chainId === parseInt(ids[i]) ? (isInput ? "active " : "invisible " + l[2]) : l[2]}
+                  className={currentChainId === parseInt(ids[i]) ? (isInput ? "active " : "invisible " + l[2]) : l[2]}
                   onClick={changeNet(ids[i])}
                 >
                   <IcoItem className={l[1]} />
@@ -317,7 +321,7 @@ export default function Wallet({ selectedChainId, onChangeBridge }: CurProps) {
               <MenuItem2
                 id="link"
                 key={i}
-                className={chainId === parseInt(ids[i]) ? "active " + l[2] : l[2]}
+                className={currentChainId === parseInt(ids[i]) ? "active " + l[2] : l[2]}
                 onClick={changeNet(ids[i])}
               >
                 <IcoItem className={l[1]} />

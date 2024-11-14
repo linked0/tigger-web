@@ -1,4 +1,4 @@
-import { Currency, DEV, JSBI, TokenAmount } from "bizboa-swap-sdk";
+import { Currency, DEV, JSBI, TokenAmount } from "tigger-swap-sdk";
 import React, { useCallback, useEffect, useState } from "react";
 import { Plus } from "react-feather";
 import { Text } from "rebass";

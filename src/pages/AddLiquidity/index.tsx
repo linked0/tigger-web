@@ -1,6 +1,6 @@
 import { BigNumber } from "@ethersproject/bignumber";
 import { TransactionResponse } from "@ethersproject/providers";
-import { Currency, DEV, TokenAmount } from "bizboa-swap-sdk";
+import { Currency, DEV, TokenAmount } from "tigger-swap-sdk";
 import React, { useCallback, useState } from "react";
 // import { Plus } from "react-feather";
 import ReactGA from "react-ga4";

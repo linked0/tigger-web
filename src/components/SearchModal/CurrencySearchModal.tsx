@@ -1,4 +1,4 @@
-import { Currency } from "bizboa-swap-sdk";
+import { Currency } from "tigger-swap-sdk";
 import React, { useCallback, useEffect, useState } from "react";
 import ReactGA from "react-ga4";
 import useLast from "../../hooks/useLast";

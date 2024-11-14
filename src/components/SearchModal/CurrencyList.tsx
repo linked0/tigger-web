@@ -1,4 +1,4 @@
-import { Currency, CurrencyAmount, currencyEquals, DEV, Token } from "bizboa-swap-sdk";
+import { Currency, CurrencyAmount, currencyEquals, DEV, Token } from "tigger-swap-sdk";
 import React, { CSSProperties, MutableRefObject, useCallback, useMemo, useState } from "react";
 import { FixedSizeList } from "react-window";
 import { Text } from "rebass";

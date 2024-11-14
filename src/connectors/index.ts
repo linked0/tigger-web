@@ -27,13 +27,13 @@ const BIZNET_NETWORK_URL = process.env.REACT_APP_BIZNET_URL
   ? process.env.REACT_APP_BIZNET_URL
   : "https://testnet.bosagora.org/";
 console.log("BIZNET_NETWORK_URL :", BIZNET_NETWORK_URL);
-export const ETHEREUM_CHAIN_ID: number = parseInt(process.env.REACT_APP_ETHEREUM_CHAIN_ID ?? "2019");
-export const BIZNET_CHAIN_ID: number = parseInt(process.env.REACT_APP_BIZNET_CHAIN_ID ?? "2019");
+export const ETHEREUM_CHAIN_ID: number = parseInt(process.env.REACT_APP_ETHEREUM_CHAIN_ID ?? "7212302");
+export const BIZNET_CHAIN_ID: number = parseInt(process.env.REACT_APP_BIZNET_CHAIN_ID ?? "7212302");
 
 if (typeof ETHEREUM_NETWORK_URL === "undefined") {
   throw new Error(`REACT_APP_NETWORK_URL must be a defined environment variable`);
 }
-export const NETWORK_CHAIN_ID: number = parseInt(process.env.REACT_APP_CHAIN_ID ?? "2019");
+export const NETWORK_CHAIN_ID: number = parseInt(process.env.REACT_APP_CHAIN_ID ?? "7212302");
 export const network = new NetworkConnector({
   urls: { [ETHEREUM_CHAIN_ID]: ETHEREUM_NETWORK_URL, [BIZNET_CHAIN_ID]: BIZNET_NETWORK_URL },
   defaultChainId: BIZNET_CHAIN_ID
@@ -45,7 +45,7 @@ export function getNetworkLibrary(): Web3Provider {
 }
 
 export const injected = new InjectedConnector({
-  supportedChainIds: [1, 2, 11155111, 1281, 2019, 2151, 31337]
+  supportedChainIds: [1, 2, 12301, 1281, 2, 2151, 31337]
 });
 
 // mainnet only

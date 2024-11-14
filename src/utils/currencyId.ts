@@ -1,4 +1,4 @@
-import { Currency, DEV, Token } from 'bizboa-swap-sdk'
+import { Currency, DEV, Token } from 'tigger-swap-sdk'
 
 export function currencyId(currency: Currency): string {
   if (currency === DEV) return 'ETH'

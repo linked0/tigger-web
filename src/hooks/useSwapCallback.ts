@@ -1,6 +1,6 @@
 import { BigNumber } from "@ethersproject/bignumber";
 import { Contract } from "@ethersproject/contracts";
-import { JSBI, Percent, Router, SwapParameters, Trade, TradeType } from "bizboa-swap-sdk";
+import { JSBI, Percent, Router, SwapParameters, Trade, TradeType } from "tigger-swap-sdk";
 import { useCallback, useMemo } from "react";
 import { BIPS_BASE, DEFAULT_DEADLINE_FROM_NOW, INITIAL_ALLOWED_SLIPPAGE } from "../constants";
 import { useTransactionAdder } from "../state/transactions/hooks";

@@ -5,7 +5,7 @@ import { JsonRpcSigner, Web3Provider } from "@ethersproject/providers";
 import { BigNumber } from "@ethersproject/bignumber";
 import { abi as IUniswapV2Router02ABI } from "@uniswap/v2-periphery/build/IUniswapV2Router02.json";
 import { ROUTER_ADDRESS } from "../constants";
-import { ChainId, JSBI, Percent, Token, CurrencyAmount, Currency, DEV } from "bizboa-swap-sdk";
+import { ChainId, JSBI, Percent, Token, CurrencyAmount, Currency, DEV } from "tigger-swap-sdk";
 import { TokenAddressMap } from "../state/lists/hooks";
 import {
   BOATokenBridge_ABI,
@@ -27,10 +27,10 @@ export function isAddress(value: any): string | false {
 
 const DEVSCAN_PREFIXES: { [chainId in ChainId]: string } = {
   1: "https://etherscan.io",
-  11155111: "https://sepolia.etherscan.io",
+  12301: "https://sepolia.etherscan.io",
   31337: "xxxxxxxxxxx",
   1281: "xxxxxxxxxxx",
-  2019: "https://testnet-scan.bosagora.org",
+  7212302: "https://testnet-scan.bosagora.org",
   2151: "https://scan.bosagora.org"
 };
 

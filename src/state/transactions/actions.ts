@@ -1,5 +1,5 @@
 import { createAction } from "@reduxjs/toolkit";
-import { ChainId } from "bizboa-swap-sdk";
+import { ChainId } from "tigger-swap-sdk";
 
 export interface SerializableTransactionReceipt {
   to: string;

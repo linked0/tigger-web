@@ -1,4 +1,4 @@
-import { ChainId, TokenAmount, Trade, TradeType } from "bizboa-swap-sdk";
+import { ChainId, TokenAmount, Trade, TradeType } from "tigger-swap-sdk";
 import React, { useContext, useMemo } from "react";
 
 import { AlertTriangle } from "react-feather";

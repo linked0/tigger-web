@@ -1,6 +1,6 @@
 import { BigNumber } from "@ethersproject/bignumber";
 import { Contract } from "@ethersproject/contracts";
-import { ChainId, CurrencyAmount, DEV, TradeType } from "bizboa-swap-sdk";
+import { ChainId, CurrencyAmount, DEV, TradeType } from "tigger-swap-sdk";
 import { useCallback, useMemo } from "react";
 import { useTransactionAdder } from "../state/transactions/hooks";
 import {

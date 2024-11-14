@@ -1,4 +1,4 @@
-import { JSBI, Pair, Percent, Token } from "bizboa-swap-sdk";
+import { JSBI, Pair, Percent, Token } from "tigger-swap-sdk";
 import { darken } from "polished";
 import React, { useState } from "react";
 import { ChevronDown, ChevronUp } from "react-feather";

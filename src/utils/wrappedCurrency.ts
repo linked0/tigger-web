@@ -1,4 +1,4 @@
-import { ChainId, Currency, CurrencyAmount, DEV, Token, TokenAmount, WDEV } from 'bizboa-swap-sdk'
+import { ChainId, Currency, CurrencyAmount, DEV, Token, TokenAmount, WDEV } from 'tigger-swap-sdk'
 
 export function wrappedCurrency(currency: Currency | undefined, chainId: ChainId | undefined): Token | undefined {
   return chainId && currency === DEV ? WDEV[chainId] : currency instanceof Token ? currency : undefined

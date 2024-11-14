@@ -1,6 +1,6 @@
 import { MaxUint256 } from "@ethersproject/constants";
 import { TransactionResponse } from "@ethersproject/providers";
-import { Trade, TokenAmount, CurrencyAmount, DEV } from "bizboa-swap-sdk";
+import { Trade, TokenAmount, CurrencyAmount, DEV } from "tigger-swap-sdk";
 import { useCallback, useMemo } from "react";
 import { ROUTER_ADDRESS } from "../constants";
 import { useTokenAllowance } from "../data/Allowances";

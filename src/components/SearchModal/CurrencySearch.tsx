@@ -1,5 +1,5 @@
 import styled, { ThemeContext } from "styled-components";
-import { Currency, Token } from "bizboa-swap-sdk";
+import { Currency, Token } from "tigger-swap-sdk";
 import React, { useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
 import ReactGA from "react-ga4";
 import { FixedSizeList } from "react-window";

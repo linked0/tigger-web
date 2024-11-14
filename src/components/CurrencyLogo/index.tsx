@@ -1,4 +1,4 @@
-import { Currency, DEV, Token } from "bizboa-swap-sdk";
+import { Currency, DEV, Token } from "tigger-swap-sdk";
 import React, { useMemo } from "react";
 import styled from "styled-components";
 

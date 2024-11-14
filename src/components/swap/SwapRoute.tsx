@@ -1,4 +1,4 @@
-import { Trade } from "bizboa-swap-sdk";
+import { Trade } from "tigger-swap-sdk";
 import React, { Fragment, memo, useContext } from "react";
 import { ChevronRight } from "react-feather";
 import { Flex } from "rebass";

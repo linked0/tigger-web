@@ -1,4 +1,4 @@
-import { ChainId } from "bizboa-swap-sdk";
+import { ChainId } from "tigger-swap-sdk";
 import MULTICALL_ABI from "./abi.json";
 import BOATokenBridge_ABI from "../abis/BOATokenBridge.json";
 import BOACoinBridge_ABI from "../abis/BOACoinBridge.json";

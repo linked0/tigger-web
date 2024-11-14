@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { ChainId, Currency, CurrencyAmount, DEV, JSBI, Token, TokenAmount, Trade } from "bizboa-swap-sdk";
+import { ChainId, Currency, CurrencyAmount, DEV, JSBI, Token, TokenAmount, Trade } from "tigger-swap-sdk";
 import { BigNumber, utils } from "ethers";
 import crypto from "crypto";
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";

@@ -1,4 +1,4 @@
-import { ChainId } from "bizboa-swap-sdk";
+import { ChainId } from "tigger-swap-sdk";
 import React, { useMemo } from "react"; // , { useContext }
 import styled, { keyframes } from "styled-components";
 import Modal from "../Modal";

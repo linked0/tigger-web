@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Field, selectChain, selectCurrency, setRecipient, switchChains, typeInput } from "../bridge/actions";
 import { useCallback, useMemo } from "react";
 import { BridgeInfoType } from "./reducer";
-import { Currency, CurrencyAmount, DEV, Token } from "bizboa-swap-sdk";
+import { Currency, CurrencyAmount, DEV, Token } from "tigger-swap-sdk";
 import { useActiveWeb3React } from "../../hooks";
 import { useTranslation } from "react-i18next";
 import { useAllTokens, useCurrency } from "../../hooks/Tokens";

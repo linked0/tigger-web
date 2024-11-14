@@ -1,4 +1,4 @@
-import { CurrencyAmount, DEV, JSBI } from 'bizboa-swap-sdk'
+import { CurrencyAmount, DEV, JSBI } from 'tigger-swap-sdk'
 import { MIN_ETH } from '../constants'
 
 /**

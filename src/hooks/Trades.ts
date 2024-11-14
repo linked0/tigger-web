@@ -1,4 +1,4 @@
-import { Currency, CurrencyAmount, Pair, Token, Trade } from 'bizboa-swap-sdk'
+import { Currency, CurrencyAmount, Pair, Token, Trade } from 'tigger-swap-sdk'
 import flatMap from 'lodash.flatmap'
 import { useMemo } from 'react'
 

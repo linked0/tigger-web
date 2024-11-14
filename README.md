@@ -1,4 +1,3 @@
-
 ## Build
 
 Install packages:
@@ -12,6 +11,24 @@ Run:
 ```
 yarn start
 ```
+
+When `ERR_OSSL_EVP_UNSUPPORTED` error occurs, set the following environment variable.
+```
+export NODE_OPTIONS=--openssl-legacy-provider
+```
+
+## Add a local dependency for tigger-swap-sdk
+In tigger-swap-sdk folder
+- `yarn build`
+- `yarn link`
+
+In tigger-web using tigger-web folder
+- Add a local dependency for tigger-swap-sdk with yarn
+  ```
+  yarn add -D file:/Users/jay/work/tigger-swap-sdk 
+  ```
+- `yarn link "tigger-swap-sdk"` 
+- `yarn list`
 
 ## Add network
 네트워크 추가에 대한 다음 설명은 sepolia 네트워크를 예를 들어 관련 정보의 추가 및 변경 순서에 따라서 설명합니다.
@@ -98,7 +115,7 @@ npm publish
 # 현재는 상시적 업그레이드로 인하여 최신버전을 사용하고 있으나,
 # 추후에 특정 버전을 명시해야 합니다. 
 
-yarn upgrade bizboa-swap-sdk
+yarn upgrade tigger-swap-sdk
 ```
 #### 2. boaswap_address.ts 
 ```

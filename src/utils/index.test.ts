@@ -1,6 +1,6 @@
 import { BigNumber } from "@ethersproject/bignumber";
 import { AddressZero } from "@ethersproject/constants";
-import { TokenAmount, Token, ChainId, Percent, JSBI } from "bizboa-swap-sdk";
+import { TokenAmount, Token, ChainId, Percent, JSBI } from "tigger-swap-sdk";
 
 import {
   getEtherscanLink,

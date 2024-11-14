@@ -1,4 +1,4 @@
-import { JSBI } from 'bizboa-swap-sdk'
+import { JSBI } from 'tigger-swap-sdk'
 import { useMemo } from 'react'
 import { NEVER_RELOAD, useSingleCallResult } from '../state/multicall/hooks'
 import { useActiveWeb3React } from './index'

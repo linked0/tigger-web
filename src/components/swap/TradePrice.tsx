@@ -1,5 +1,5 @@
 import React from "react";
-import { Price } from "bizboa-swap-sdk";
+import { Price } from "tigger-swap-sdk";
 import { useContext } from "react";
 import { Repeat } from "react-feather";
 import { Text } from "rebass";

@@ -1,4 +1,4 @@
-import { Currency } from "bizboa-swap-sdk";
+import { Currency } from "tigger-swap-sdk";
 import React from "react";
 import styled from "styled-components";
 import CurrencyLogo from "../CurrencyLogo";

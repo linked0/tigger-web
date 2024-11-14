@@ -1,6 +1,6 @@
 import React from "react";
 import { Text } from "rebass";
-import { ChainId, Currency, currencyEquals, DEV } from "bizboa-swap-sdk";
+import { ChainId, Currency, currencyEquals, DEV } from "tigger-swap-sdk";
 import styled from "styled-components";
 
 import QuestionHelper from "../QuestionHelper";

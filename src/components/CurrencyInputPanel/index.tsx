@@ -1,4 +1,4 @@
-import { ChainId, Currency, Pair } from "bizboa-swap-sdk";
+import { ChainId, Currency, Pair } from "tigger-swap-sdk";
 import React, { useCallback, useContext, useState } from "react";
 import styled, { ThemeContext } from "styled-components";
 import { darken } from "polished";

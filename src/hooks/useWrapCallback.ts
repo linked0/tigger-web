@@ -1,4 +1,4 @@
-import { Currency, currencyEquals, DEV, WDEV } from 'bizboa-swap-sdk'
+import { Currency, currencyEquals, DEV, WDEV } from 'tigger-swap-sdk'
 import { useMemo } from 'react'
 import { tryParseAmount } from '../state/swap/hooks'
 import { useTransactionAdder } from '../state/transactions/hooks'

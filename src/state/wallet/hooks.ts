@@ -1,4 +1,4 @@
-import { Currency, CurrencyAmount, DEV, JSBI, Token, TokenAmount } from 'bizboa-swap-sdk'
+import { Currency, CurrencyAmount, DEV, JSBI, Token, TokenAmount } from 'tigger-swap-sdk'
 import { useMemo } from 'react'
 import ERC20_INTERFACE from '../../constants/abis/erc20'
 import { useAllTokens } from '../../hooks/Tokens'

@@ -1,4 +1,4 @@
-import { Currency, currencyEquals } from "bizboa-swap-sdk";
+import { Currency, currencyEquals } from "tigger-swap-sdk";
 import { WrappedTokenInfo } from "../state/lists/hooks";
 
 export function isAllowCurrency(

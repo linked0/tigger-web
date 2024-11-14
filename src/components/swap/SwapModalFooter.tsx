@@ -1,4 +1,4 @@
-import { Token, Trade, TradeType } from "bizboa-swap-sdk";
+import { Token, Trade, TradeType } from "tigger-swap-sdk";
 
 import React, { useMemo, useState } from "react";
 import { Repeat } from "react-feather";

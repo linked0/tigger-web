@@ -10,7 +10,7 @@ import { RowFixed } from "../Row";
 // import { Text } from "rebass";
 import { CurrencyLogoFor } from "../CurrencyLogo";
 // import { RowTransactions } from "../PositionCard";
-import { Currency, TradeType } from "bizboa-swap-sdk";
+import { Currency, TradeType } from "tigger-swap-sdk";
 import { useSelectedListInfo } from "../../state/lists/hooks";
 import { darken } from "polished";
 import { IconArrow } from "../../pages/styleds";
@@ -26,7 +26,7 @@ import { NETWORK_LABELS } from "../Wallet";
 import ImgBiznet from "../../assets/images/img-biznet.svg";
 import EthereumLogo from "../../assets/images/ethereum-logo.png";
 import ico_wrong from "../../assets/images/ico-wrong.svg";
-import { ChainId } from "bizboa-swap-sdk";
+import { ChainId } from "tigger-swap-sdk";
 
 const TransactionWrapper = styled.div`
   position: relative;

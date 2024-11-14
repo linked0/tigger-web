@@ -1,4 +1,4 @@
-import { Currency, Percent, Price } from "bizboa-swap-sdk";
+import { Currency, Percent, Price } from "tigger-swap-sdk";
 import React, { useContext } from "react";
 import { Text } from "rebass";
 import styled, { ThemeContext } from "styled-components";

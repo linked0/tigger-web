@@ -1,4 +1,4 @@
-import { Token, TokenAmount } from 'bizboa-swap-sdk'
+import { Token, TokenAmount } from 'tigger-swap-sdk'
 import { useMemo } from 'react'
 import { useAllTokenBalances } from '../../state/wallet/hooks'
 

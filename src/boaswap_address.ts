@@ -1,4 +1,4 @@
-import { ChainId } from "bizboa-swap-sdk";
+import { ChainId } from "tigger-swap-sdk";
 type DeployedContract = {
   WETH: string;
   factory: string;
@@ -37,8 +37,8 @@ export const CONTRACT_ADDRESS_NETWORKS: { [chainId in ChainId]: DeployedContract
     factory: "0x96BfB45907879216CF504E81aFB2948048249A12",
     routerv2: "0x761d69Ba08C571AE2247be65f42e79E4126ae4DF",
     multicall: "0xD3078B0eC7FdfE525D8C004Fde41ec473d60Cdd5",
-    bridge: "0x84ec332826F277e5cAF55E555A006EAD889b16ea",
-    tokenBridge: "0x1078F89bd2650e8FBAaCb8aF01efB4447E820325"
+    bridge: "0x2988EF2c89E22a2Ffdf46aA005B46853d20eb423",
+    tokenBridge: "0xB619373A82A4f19eE45abFd72eD23c172E10B31B"
   },
   [ChainId.BIZTESTNET]: {
     WETH: "0x0B102b3b321E0D9983907618eC3b685C83a43184",

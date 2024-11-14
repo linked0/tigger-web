@@ -1,4 +1,4 @@
-import { ChainId, currencyEquals, TokenAmount, Trade } from "bizboa-swap-sdk";
+import { ChainId, currencyEquals, TokenAmount, Trade } from "tigger-swap-sdk";
 import React, { useCallback, useMemo } from "react";
 import TransactionConfirmationModal, {
   ConfirmationModalContent,

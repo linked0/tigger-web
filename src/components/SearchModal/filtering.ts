@@ -1,5 +1,5 @@
 import { isAddress } from "../../utils";
-import { Currency, Token } from "bizboa-swap-sdk";
+import { Currency, Token } from "tigger-swap-sdk";
 import { WrappedTokenInfo } from "../../state/lists/hooks";
 
 export function filterTokens(tokens: Token[], search: string): Token[] {

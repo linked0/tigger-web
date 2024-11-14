@@ -9,7 +9,7 @@ import {
   TradeType,
   // TradeType,
   WDEV
-} from "bizboa-swap-sdk";
+} from "tigger-swap-sdk";
 import { useMemo } from "react";
 import invariant from "tiny-invariant";
 import { Field } from "../state/bridge/actions";

@@ -1,4 +1,4 @@
-import { ChainId, Currency, currencyEquals, JSBI, Price, WDEV } from 'bizboa-swap-sdk'
+import { ChainId, Currency, currencyEquals, JSBI, Price, WDEV } from 'tigger-swap-sdk'
 import { useMemo } from 'react'
 import { USDC } from '../constants'
 import { PairState, usePairs } from '../data/Reserves'

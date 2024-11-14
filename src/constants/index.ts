@@ -1,4 +1,4 @@
-import { ChainId, JSBI, Percent, Token, WDEV } from "bizboa-swap-sdk";
+import { ChainId, JSBI, Percent, Token, WDEV } from "tigger-swap-sdk";
 import { AbstractConnector } from "@web3-react/abstract-connector";
 import { CONTRACT_ADDRESS_NETWORKS } from "../boaswap_address";
 

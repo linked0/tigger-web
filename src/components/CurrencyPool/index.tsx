@@ -5,7 +5,7 @@ import { BiChevronDown } from "react-icons/bi";
 
 import { RowStart } from "../Row";
 import { ButtonSmallRed, WalletHd, WrapCurrencyInput, ButtonSmallDisabled } from "../../pages/styleds";
-import { JSBI, Pair, Percent, Token } from "bizboa-swap-sdk";
+import { JSBI, Pair, Percent, Token } from "tigger-swap-sdk";
 import { useActiveWeb3React } from "../../hooks";
 import { useTokenBalance } from "../../state/wallet/hooks";
 import { useTotalSupply } from "../../data/TotalSupply";
