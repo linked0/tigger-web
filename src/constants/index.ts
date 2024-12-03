@@ -1,6 +1,6 @@
 import { ChainId, JSBI, Percent, Token, WDEV } from "tigger-swap-sdk";
 import { AbstractConnector } from "@web3-react/abstract-connector";
-import { CONTRACT_ADDRESS_NETWORKS } from "../boaswap_address";
+import { CONTRACT_ADDRESS_NETWORKS } from "tigger-swap-sdk";
 
 import { injected } from "../connectors";
 import { BridgeDirection } from "../state/transactions/actions";
@@ -9,7 +9,9 @@ export const ROUTER_ADDRESS: { [key: string]: string } = {
   [ChainId.HARDHAT]: CONTRACT_ADDRESS_NETWORKS[ChainId.HARDHAT].routerv2,
   [ChainId.STANDALONE]: CONTRACT_ADDRESS_NETWORKS[ChainId.STANDALONE].routerv2,
   [ChainId.SEPOLIA]: CONTRACT_ADDRESS_NETWORKS[ChainId.SEPOLIA].routerv2,
+  [ChainId.MARIGOLD]: CONTRACT_ADDRESS_NETWORKS[ChainId.MARIGOLD].routerv2,
   [ChainId.BIZTESTNET]: CONTRACT_ADDRESS_NETWORKS[ChainId.BIZTESTNET].routerv2,
+  [ChainId.BIZDEVNET]: CONTRACT_ADDRESS_NETWORKS[ChainId.BIZDEVNET].routerv2,
   [ChainId.BIZNET]: CONTRACT_ADDRESS_NETWORKS[ChainId.BIZNET].routerv2
 };
 
@@ -17,9 +19,11 @@ export const OPPOSITE_CHAIN: { [key: string]: number } = {
   [ChainId.HARDHAT]: ChainId.STANDALONE,
   [ChainId.STANDALONE]: ChainId.STANDALONE,
   [ChainId.MAINNET]: ChainId.BIZNET,
-  [ChainId.BIZNET]: ChainId.MAINNET,
   [ChainId.SEPOLIA]: ChainId.BIZTESTNET,
-  [ChainId.BIZTESTNET]: ChainId.SEPOLIA
+  [ChainId.MARIGOLD]: ChainId.BIZTESTNET,
+  [ChainId.BIZTESTNET]: ChainId.SEPOLIA,
+  [ChainId.BIZDEVNET]: ChainId.MARIGOLD,
+  [ChainId.BIZNET]: ChainId.MAINNET
 };
 
 export const DIRECTION_CHAIN: { [key: string]: number } = {
@@ -28,7 +32,9 @@ export const DIRECTION_CHAIN: { [key: string]: number } = {
   [ChainId.MAINNET]: BridgeDirection.ETHNET_BIZNET,
   [ChainId.BIZNET]: BridgeDirection.BIZNET_ETHNET,
   [ChainId.SEPOLIA]: BridgeDirection.ETHNET_BIZNET,
-  [ChainId.BIZTESTNET]: BridgeDirection.BIZNET_ETHNET
+  [ChainId.MARIGOLD]: BridgeDirection.ETHNET_BIZNET,
+  [ChainId.BIZTESTNET]: BridgeDirection.BIZNET_ETHNET,
+  [ChainId.BIZDEVNET]: BridgeDirection.BIZNET_ETHNET
 };
 
 export const SWAPABLE_CHAIN: ChainId[] = [ChainId.STANDALONE, ChainId.BIZNET, ChainId.BIZTESTNET];
@@ -96,7 +102,9 @@ const WDEV_ONLY: ChainTokenList = {
   [ChainId.HARDHAT]: [WDEV[ChainId.HARDHAT]],
   [ChainId.STANDALONE]: [WDEV[ChainId.STANDALONE]],
   [ChainId.SEPOLIA]: [WDEV[ChainId.SEPOLIA]],
+  [ChainId.MARIGOLD]: [WDEV[ChainId.MARIGOLD]],
   [ChainId.BIZTESTNET]: [WDEV[ChainId.BIZTESTNET]],
+  [ChainId.BIZDEVNET]: [WDEV[ChainId.BIZDEVNET]],
   [ChainId.BIZNET]: [WDEV[ChainId.BIZNET]]
 };
 

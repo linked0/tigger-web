@@ -118,6 +118,7 @@ npm publish
 yarn upgrade tigger-swap-sdk
 ```
 #### 2. boaswap_address.ts 
+tigger-swap-sdk를 사용함으로 더 이상 아래의 세팅을 쓰지 않음.
 ```
   # CONTRACT_ADDRESS_NETWORKS에 BOASwap Contract 배포 주소를 추가합니다. 
 

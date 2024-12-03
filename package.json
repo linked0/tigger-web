@@ -74,7 +74,7 @@
     "serve": "^11.3.0",
     "start-server-and-test": "^1.11.0",
     "styled-components": "^5.3.5",
-    "tigger-swap-sdk": "file:/Users/jay/work/tigger-swap-sdk",
+    "tigger-swap-sdk": "^1.0.6",
     "typescript": "^3.8.3",
     "urijs": "^1.19.7"
   },

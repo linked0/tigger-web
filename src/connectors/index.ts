@@ -27,7 +27,7 @@ const BIZNET_NETWORK_URL = process.env.REACT_APP_BIZNET_URL
   ? process.env.REACT_APP_BIZNET_URL
   : "https://testnet.bosagora.org/";
 console.log("BIZNET_NETWORK_URL :", BIZNET_NETWORK_URL);
-export const ETHEREUM_CHAIN_ID: number = parseInt(process.env.REACT_APP_ETHEREUM_CHAIN_ID ?? "7212302");
+export const ETHEREUM_CHAIN_ID: number = parseInt(process.env.REACT_APP_ETHEREUM_CHAIN_ID ?? "12301");
 export const BIZNET_CHAIN_ID: number = parseInt(process.env.REACT_APP_BIZNET_CHAIN_ID ?? "7212302");
 
 if (typeof ETHEREUM_NETWORK_URL === "undefined") {

@@ -27,11 +27,13 @@ export function isAddress(value: any): string | false {
 
 const DEVSCAN_PREFIXES: { [chainId in ChainId]: string } = {
   1: "https://etherscan.io",
+  11155111: "https://sepolia.etherscan.io",
   12301: "https://sepolia.etherscan.io",
   31337: "xxxxxxxxxxx",
   1281: "xxxxxxxxxxx",
+  7212303: "https://testnet-scan.bosagora.org",
   7212302: "https://testnet-scan.bosagora.org",
-  2151: "https://scan.bosagora.org"
+  7212301: "https://scan.bosagora.org"
 };
 
 export function getEtherscanLink(chainId: ChainId, data: string, type: "transaction" | "token" | "address"): string {

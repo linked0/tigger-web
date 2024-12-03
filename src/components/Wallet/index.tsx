@@ -139,7 +139,7 @@ export const NETWORK_LABELS: { [chainId in ChainId]: string[] } = {
   [ChainId.MAINNET]: [
     "Ethereum MainNet",
     "ico-eth",
-    STAGE === "LOCAL" ? "invisible" : STAGE === "PROD" ? "visible" : "invisible",
+    STAGE === "LOCAL" ? "visible" : STAGE === "PROD" ? "visible" : "invisible",
     "0x1",
     "Ethereum ETH",
     "ETH",
@@ -150,7 +150,7 @@ export const NETWORK_LABELS: { [chainId in ChainId]: string[] } = {
   [ChainId.HARDHAT]: [
     "Hardhat(Ethererum)",
     "ico-boa",
-    STAGE === "LOCAL" ? "visible" : STAGE === "PROD" ? "invisible" : "invisible",
+    STAGE === "LOCAL" ? "invisible" : STAGE === "PROD" ? "invisible" : "invisible",
     "0x7A69",
     "Ethereum ETH",
     "ETH",
@@ -161,7 +161,7 @@ export const NETWORK_LABELS: { [chainId in ChainId]: string[] } = {
   [ChainId.STANDALONE]: [
     "Standalone(Biznet)",
     "ico-boa",
-    STAGE === "LOCAL" ? "visible" : STAGE === "PROD" ? "invisible" : "invisible",
+    STAGE === "LOCAL" ? "invisible" : STAGE === "PROD" ? "invisible" : "invisible",
     "0x501",
     "Ethereum ETH",
     "BOA",
@@ -170,9 +170,20 @@ export const NETWORK_LABELS: { [chainId in ChainId]: string[] } = {
     "http://127.0.0.1:9933"
   ],
   [ChainId.SEPOLIA]: [
+    "Sepolia",
+    "ico-eth",
+    STAGE === "LOCAL" ? "visible" : STAGE === "PROD" ? "invisible" : "visible",
+    "12301",
+    "Ethereum ETH",
+    "ETH",
+    "18",
+    "http://localhost:8545",
+    "https://sepolia.etherscan.io"
+  ],
+  [ChainId.MARIGOLD]: [
     "Marigold",
     "ico-eth",
-    STAGE === "LOCAL" ? "invisible" : STAGE === "PROD" ? "invisible" : "visible",
+    STAGE === "LOCAL" ? "visible" : STAGE === "PROD" ? "invisible" : "visible",
     "12301",
     "Ethereum ETH",
     "ETH",
@@ -184,6 +195,17 @@ export const NETWORK_LABELS: { [chainId in ChainId]: string[] } = {
     "PoohTestNet",
     "ico-boa",
     STAGE === "LOCAL" ? "invisible" : STAGE === "PROD" ? "invisible" : "visible",
+    "7212303",
+    "Poohnet POO",
+    "POO",
+    "18",
+    "http://3.37.37.195:8545",
+    "https://testnet-scan.bosagora.org"
+  ],
+  [ChainId.BIZDEVNET]: [
+    "PoohDevNet",
+    "ico-boa",
+    STAGE === "LOCAL" ? "visible" : STAGE === "PROD" ? "invisible" : "visible",
     "7212302",
     "Poohnet POO",
     "POO",
@@ -195,7 +217,7 @@ export const NETWORK_LABELS: { [chainId in ChainId]: string[] } = {
     "BizNet    ",
     "ico-boa",
     STAGE === "LOCAL" ? "invisible" : STAGE === "PROD" ? "visible" : "invisible",
-    "0x867",
+    "7212301",
     "Bosagora BOA",
     "BOA",
     "18",
@@ -260,8 +282,8 @@ export default function Wallet({ selectedChainId, onChangeBridge }: CurProps) {
   const { chainId } = useActiveWeb3React();
   let currentChainId = chainId as ChainId;
   if (currentChainId === undefined) {
-    selectedChainId = ChainId.SEPOLIA;
-    currentChainId = ChainId.SEPOLIA;
+    selectedChainId = ChainId.MARIGOLD;
+    currentChainId = ChainId.MARIGOLD;
   }
 
   const node = useRef<HTMLDivElement>();
