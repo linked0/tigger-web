@@ -1,3 +1,12 @@
+## Summary
+### injected to be configured
+If chain IDs don't exist in the contant `injected` in `tigger-web/src/connector.index.ts`, connections are failed.
+```
+export const injected = new InjectedConnector({
+ supportedChainIds: [1, 2, 12301, 1281, 2, 2151, 31337, 7212301, 7212302, 7212303]
+});
+```
+The details are described in the document, [Tigger-Summary](https://docs.google.com/document/d/11M0V9ECldZ7PioU8JPOY9Xr28cOVF0kHaGqozHmylj0/edit?tab=t.0).
 ## Build
 
 Install packages:

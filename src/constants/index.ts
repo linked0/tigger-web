@@ -20,7 +20,7 @@ export const OPPOSITE_CHAIN: { [key: string]: number } = {
   [ChainId.STANDALONE]: ChainId.STANDALONE,
   [ChainId.MAINNET]: ChainId.BIZNET,
   [ChainId.SEPOLIA]: ChainId.BIZTESTNET,
-  [ChainId.MARIGOLD]: ChainId.BIZTESTNET,
+  [ChainId.MARIGOLD]: ChainId.BIZDEVNET,
   [ChainId.BIZTESTNET]: ChainId.SEPOLIA,
   [ChainId.BIZDEVNET]: ChainId.MARIGOLD,
   [ChainId.BIZNET]: ChainId.MAINNET

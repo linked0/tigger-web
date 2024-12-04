@@ -211,7 +211,7 @@ export const NETWORK_LABELS: { [chainId in ChainId]: string[] } = {
     "POO",
     "18",
     "http://3.37.37.195:8545",
-    "https://testnet-scan.bosagora.org"
+    "https://sepolia.etherscan.io"
   ],
   [ChainId.BIZNET]: [
     "BizNet    ",
@@ -232,7 +232,8 @@ interface CurProps {
 
 export async function changeNetwork(id: string, onChangeBridge: ((chainId: string) => void) | undefined) {
   const { ethereum } = window;
-  const hexId = NETWORK_LABELS[parseInt(id) as ChainId][3]; //'0x' + parseInt(id).toString(16)
+  const chainId = NETWORK_LABELS[parseInt(id) as ChainId][3]; //'0x' + parseInt(id).toString(16)
+  const hexId = "0x" + parseInt(chainId).toString(16);
   if (ethereum) {
     try {
       // @ts-ignore
@@ -243,7 +244,6 @@ export async function changeNetwork(id: string, onChangeBridge: ((chainId: strin
       if (!!onChangeBridge) onChangeBridge(id);
     } catch (switchError) {
       // This error code indicates that the chain has not been added to MetaMask.
-      console.log("switchError :", switchError);
       const chainName = NETWORK_LABELS[parseInt(id) as ChainId][0];
       const currencyName = NETWORK_LABELS[parseInt(id) as ChainId][4];
       const currencySymbol = NETWORK_LABELS[parseInt(id) as ChainId][5];
@@ -271,7 +271,7 @@ export async function changeNetwork(id: string, onChangeBridge: ((chainId: strin
           });
         } catch (addError) {
           // handle "add" error
-          console.log("addError :", addError);
+          console.error("changeNetwork :", addError);
         }
       }
       // handle other "switch" errors
@@ -295,6 +295,7 @@ export default function Wallet({ selectedChainId, onChangeBridge }: CurProps) {
   const changeNet = useCallback(
     id => async (_: any) => {
       if (!!selectedChainId && isInput === false) return;
+      console.log("changeNetwork in Wallet");
       changeNetwork(id, onChangeBridge);
       toggle();
     },
