@@ -107,6 +107,8 @@ export function getRouterContract(chainId: number, library: Web3Provider, accoun
 }
 
 export function getBridgeBOATokenContract(chainId: number, library: Web3Provider, account?: string): Contract {
+  console.log("BRIDGE_NETWORKS", BRIDGE_NETWORKS[chainId as ChainId]);
+  console.log("TOKEN_BRIDGE_NETWORKS", TOKEN_BRIDGE_NETWORKS[chainId as ChainId]);
   return getContract(BRIDGE_NETWORKS[chainId as ChainId], BOATokenBridge_ABI.abi, library, account);
 }
 

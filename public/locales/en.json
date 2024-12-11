@@ -217,6 +217,8 @@
   "bridgeRelayOut" : "Bridge relay node out of service",
   "insufficientSendAmount" : "Insufficient send amount",
   "transfer" : "Transfer",
+  "transferJay" : "Transfer WETH",
+  "transferJay2" : "Transfer WETH 2",
   "recipient" : "Recipient",
   "more": "More",
   "poolSize" : "Pool Size",

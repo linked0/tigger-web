@@ -256,12 +256,12 @@ export function useBridgeCallback(
       callback: async function onSwap(): Promise<string> {
         const estimatedCalls: EstimatedBridgeCall[] = await Promise.all(
           swapCalls.map(call => {
-            console.log("bridge call:", call);
             const {
               parameters: { methodName, args, value },
               contract
             } = call;
             const options = !value || isZero(value) ? {} : { value };
+            console.log("bridge call:", contract, methodName, "args:", args, "value:", value);
 
             return contract.estimateGas[methodName](...args, options)
               .then(gasEstimate => {

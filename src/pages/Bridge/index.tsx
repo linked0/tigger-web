@@ -542,7 +542,7 @@ export default function Networks() {
                         ? t("insufficientSendAmount")
                         : bridgeInputError
                         ? bridgeInputError
-                        : t("transfer")}
+                        : t("transferJay")}
                     </Text>
                   </ButtonError>
                 </RowBetween>
@@ -568,7 +568,7 @@ export default function Networks() {
                       ? t("insufficientSendAmount")
                       : bridgeInputError
                       ? bridgeInputError
-                      : t("transfer")}
+                      : t("transferJay2")}
                   </Text>
                 </ButtonError>
               )}

@@ -13780,10 +13780,10 @@ thunky@^1.0.2:
   resolved "https://registry.yarnpkg.com/thunky/-/thunky-1.1.0.tgz#5abaf714a9405db0504732bbccd2cedd9ef9537d"
   integrity sha512-eHY7nBftgThBqOyHGVN+l8gF0BucP09fMo0oO/Lb0w1OF80dJv+lDVpXG60WMQvkcxAkNybKsrEIE3ZtKGmPrA==
 
-tigger-swap-sdk@^1.0.6:
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/tigger-swap-sdk/-/tigger-swap-sdk-1.0.6.tgz#7ae4c549138f2a591a0ea7d9987314c66cc3943d"
-  integrity sha512-2gGWmoMLWZYtQSwU28sCjZ0DQ8rAY1iMm+Q+UfQow6MVGUIuj7iQjE9KJAuWKZKeef3eCUaxzoB9zWKMNLBt+w==
+tigger-swap-sdk@^1.0.8:
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/tigger-swap-sdk/-/tigger-swap-sdk-1.0.8.tgz#580ea063e80d2d1962b43abd49e916e7eb216f30"
+  integrity sha512-myX6q7x85YxPy6G/uyhzRSA2+rE7CmPH5my7RBaFQg5IeQR4kKSDxc6vjVyWY6O2nMFbokXOtAm3ZRVgIGjZMA==
   dependencies:
     "@uniswap/sdk-core" "^3.0.0-alpha.3"
     "@uniswap/v2-core" "^1.0.0"

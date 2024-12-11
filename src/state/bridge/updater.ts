@@ -27,6 +27,7 @@ export default function Updater() {
   const dispatch = useDispatch<AppDispatch>();
   // const lists = useSelector<AppState, AppState["lists"]["byUrl"]>(state => state.lists.byUrl);
 
+  console.log("Updater");
   const isWindowVisible = useIsWindowVisible();
   const allTransactions = useAllTransactions();
   const sortedRecentTransactions = useMemo(() => {

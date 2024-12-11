@@ -217,6 +217,8 @@
   "bridgeRelayOut" : "브릿지 릴레이 노드 서비스 중단",
   "insufficientSendAmount" : "송금량 부족",
   "transfer" : "전송",
+  "transferJay" : "전송 WETH",
+  "transferJay2" : "전송 WETH2",
   "recipient" : "받는 사람",
   "more": "더보기",
   "poolSize" : "유동성 풀 크기",
