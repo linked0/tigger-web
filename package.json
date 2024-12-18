@@ -74,7 +74,7 @@
     "serve": "^11.3.0",
     "start-server-and-test": "^1.11.0",
     "styled-components": "^5.3.5",
-    "tigger-swap-sdk": "^1.0.8",
+    "tigger-swap-sdk": "^1.0.9",
     "typescript": "^3.8.3",
     "urijs": "^1.19.7"
   },
@@ -84,10 +84,10 @@
     "react-error-overlay": "6.0.9"
   },
   "scripts": {
-    "start": "PORT=3001 react-scripts start",
-    "start-env": "sh -ac '. .env.${REACT_APP_ENV}; react-scripts start'",
+    "start": "NODE_OPTIONS=--openssl-legacy-provider PORT=3001 react-scripts start",
+    "start-env": "NODE_OPTIONS=--openssl-legacy-provider  sh -ac '. .env.${REACT_APP_ENV}; react-scripts start'",
     "start:dev": "REACT_APP_ENV=dev PORT=3001 npm run start-env",
-    "start:prod": "REACT_APP_ENV=prod PORT=3001 npm run start-env",
+    "start:prod": "NODE_OPTIONS=--openssl-legacy-provider REACT_APP_ENV=prod PORT=3001 npm run start-env",
     "build": "react-scripts build",
     "build-env": "sh -ac '. .env.${REACT_APP_ENV}; react-scripts build'",
     "build:dev": "REACT_APP_ENV=dev npm run build-env",
