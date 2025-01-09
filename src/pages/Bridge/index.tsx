@@ -79,6 +79,8 @@ export default function Networks() {
     bridgeType as CurrencyType
   );
 
+  // console.log("currencies", currencies);
+
   const outputCurrency = currencies[Field.OUTPUT];
   const bridgeCurrencyType = useMemo(() => {
     return inputCurrency instanceof Token && outputCurrency instanceof Token ? "1" : "0";
@@ -153,6 +155,10 @@ export default function Networks() {
     const swap_feefy = utils.formatUnits(swap_fee, boa.decimal);
     const tx_feefy = utils.formatUnits(tx_fee, boa.decimal);
     const estimation_bn = boa.value.sub(swap_fee).sub(tx_fee);
+    console.log("swap_fee", swap_fee);
+    console.log("tx_fee", tx_fee);
+    console.log("estimation_bn", estimation_bn);
+    console.log("boa.decimal", boa.decimal);
     const estimation = utils.formatUnits(estimation_bn, boa.decimal);
     setSwapFee(swap_feefy);
     setTxFee(tx_feefy);
@@ -186,6 +192,8 @@ export default function Networks() {
         : Amount.make(typedValue, inputCurrency ? (inputCurrency as Currency)?.decimals : 0);
     const bridgeUrl = BRIDGE_SERVER_URL;
     const client = new Client();
+    console.log("decimals", inputCurrency?.decimals);
+    console.log("typedValue", typedValue, "boa", boa.toString());
     const uri = URI(bridgeUrl)
       .directory("bridge/fees")
       .addQuery("amount", boa.toString())
@@ -204,6 +212,7 @@ export default function Networks() {
         bridgeCurrencyType === CurrencyType.BOA
           ? estimateForBoaType(response, boa)
           : estimateForTokenType(response, boa);
+      console.log("estimation", estimation);
       return estimation;
     }
     setBridgeServerStatus(false);

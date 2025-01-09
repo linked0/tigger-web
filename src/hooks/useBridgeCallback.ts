@@ -261,7 +261,7 @@ export function useBridgeCallback(
               contract
             } = call;
             const options = !value || isZero(value) ? {} : { value };
-            console.log("bridge call:", contract, methodName, "args:", args, "value:", value);
+            console.log("### bridge call:", contract, methodName, "args:", args, "value:", value);
 
             return contract.estimateGas[methodName](...args, options)
               .then(gasEstimate => {

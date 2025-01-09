@@ -77,6 +77,8 @@ export default function Updater() {
                   if (!contract) {
                     return null;
                   } else {
+                    console.log("checkDeposit:", tx.bridgeBoxId);
+                    console.log("contract:", contract);
                     const result = contract.checkDeposit(tx.bridgeBoxId);
                     result.then(
                       (r: {

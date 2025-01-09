@@ -143,6 +143,7 @@ export default function CurrencyInputPanel({
 
   const selectedCurrencyBalance = useCurrencyBalance(account ?? undefined, currency ?? undefined);
 
+  console.log("### selectedCurrencyBalance", selectedCurrencyBalance);
   const theme = useContext(ThemeContext);
 
   const handleDismissSearch = useCallback(() => {
@@ -361,6 +362,8 @@ export function CurrencyInputPanelForBridge({
   id
 }: CurrencyInputPanelPropsForBridge) {
   const { account, chainId } = useActiveWeb3React();
+  // console.log("$$$ selectedChainId", selectedChainId);
+  // console.log("$$$ currency", currency);
   const selectedCurrencyBalance = useCurrencyBalance(account ?? undefined, currency ?? undefined);
   const { t } = useTranslation();
   const isInput = selectedChainId === chainId;

@@ -102,6 +102,7 @@ export function useDerivedBridgeInfo(
 
   const tInputCurrency = useCurrency(inputCurrencyId);
   const inputCurrency = inputCurrencyId !== "" && inputCurrencyId !== undefined ? tInputCurrency : undefined;
+  // console.log("inputCurrencyId", inputCurrencyId);
   const oppositeChainId = useMemo(() => {
     if (chainId) {
       return OPPOSITE_CHAIN[chainId];

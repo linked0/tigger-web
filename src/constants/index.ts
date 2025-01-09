@@ -17,7 +17,7 @@ export const ROUTER_ADDRESS: { [key: string]: string } = {
 
 export const OPPOSITE_CHAIN: { [key: string]: number } = {
   [ChainId.HARDHAT]: ChainId.STANDALONE,
-  [ChainId.STANDALONE]: ChainId.STANDALONE,
+  [ChainId.STANDALONE]: ChainId.BIZDEVNET,
   [ChainId.MAINNET]: ChainId.BIZNET,
   [ChainId.SEPOLIA]: ChainId.BIZTESTNET,
   [ChainId.MARIGOLD]: ChainId.BIZDEVNET,
@@ -28,7 +28,7 @@ export const OPPOSITE_CHAIN: { [key: string]: number } = {
 
 export const DIRECTION_CHAIN: { [key: string]: number } = {
   [ChainId.HARDHAT]: BridgeDirection.ETHNET_BIZNET,
-  [ChainId.STANDALONE]: BridgeDirection.BIZNET_ETHNET,
+  [ChainId.STANDALONE]: BridgeDirection.ETHNET_BIZNET,
   [ChainId.MAINNET]: BridgeDirection.ETHNET_BIZNET,
   [ChainId.BIZNET]: BridgeDirection.BIZNET_ETHNET,
   [ChainId.SEPOLIA]: BridgeDirection.ETHNET_BIZNET,

@@ -1,12 +1,5 @@
-## Summary
-### injected to be configured
-If chain IDs don't exist in the contant `injected` in `tigger-web/src/connector.index.ts`, connections are failed.
-```
-export const injected = new InjectedConnector({
- supportedChainIds: [1, 2, 12301, 1281, 2, 2151, 31337, 7212301, 7212302, 7212303]
-});
-```
-The details are described in the document, [Tigger-Summary](https://docs.google.com/document/d/11M0V9ECldZ7PioU8JPOY9Xr28cOVF0kHaGqozHmylj0/edit?tab=t.0).
+# Tigger Web Project
+
 ## Build
 
 Install packages:
@@ -15,10 +8,16 @@ Install packages:
 yarn install
 ```
 
+현재는 상시적 업그레이드로 인하여 최신버전을 사용하고 있으나,
+추후에 특정 버전을 명시해야 합니다. 
+```
+yarn upgrade tigger-swap-sdk
+```
+
 Run:
 
 ```
-yarn start
+yarn start:dev
 ```
 
 When `ERR_OSSL_EVP_UNSUPPORTED` error occurs, set the following environment variable.
@@ -26,23 +25,65 @@ When `ERR_OSSL_EVP_UNSUPPORTED` error occurs, set the following environment vari
 export NODE_OPTIONS=--openssl-legacy-provider
 ```
 
-## Add a local dependency for tigger-swap-sdk
-In tigger-swap-sdk folder
-- `yarn build`
-- `yarn link`
+## BOASwap Web
 
-In tigger-web using tigger-web folder
-- Add a local dependency for tigger-swap-sdk with yarn
-  ```
-  yarn add -D file:/Users/jay/work/tigger-swap-sdk 
-  ```
-- `yarn link "tigger-swap-sdk"` 
-- `yarn list`
+#### 1. connectors>index.ts
+```
+# 지원가능한 ChainId를 추가합니다.
 
-## Add network
-네트워크 추가에 대한 다음 설명은 sepolia 네트워크를 예를 들어 관련 정보의 추가 및 변경 순서에 따라서 설명합니다.
+supportedChainIds: [1, 2, 11155111, 1281, 1287, 1288]
+```
 
-### BOASwap Contract
+#### 2. constants>index.ts
+```
+# ROUTER_ADDRESS를 추가합니다. 
+
+[ChainId.SEPOLIA]: CONTRACT_ADDRESS_NETWORKS[ChainId.SEPOLIA].routerv2,
+
+# WDEV_ONLY의 토크리스트를 추가합니다.
+
+[ChainId.SEPOLIA]: [WDEV[ChainId.SEPOLIA]]
+```
+#### 3. utils>index.ts
+```
+# DEVSCAN_PREFIXES에 Chain Id와 스캔 링크를 추가합니다.
+
+7212309: 'https://sepolia.etherscan.io',
+```
+
+#### 4. set default chain id
+Near 281 line in `src/components/Wallet/index.tsx`
+
+```
+export default function Wallet({ selectedChainId, onChangeBridge }: CurProps) {
+  const { chainId } = useActiveWeb3React();
+  let currentChainId = chainId as ChainId;
+  if (currentChainId === undefined) {
+    selectedChainId = ChainId.STANDALONE;
+    currentChainId = ChainId.STANDALONE;
+  }
+```
+
+#### 5. set chain info in index.tsx
+`src/components/Wallet/index.tsx`
+```
+  [ChainId.STANDALONE]: [
+    "Standalone",
+    "ico-eth",
+    STAGE === "LOCAL" ? "visible" : STAGE === "PROD" ? "invisible" : "invisible",
+    "7212309",
+    "Ethereum ETH",
+    "ETH",
+    "18",
+    "http://localhost:8585",
+    "http://127.0.0.1:9933"
+  ],
+```
+
+#### 6. 토큰 추가
+네크워크 추가 이후에는 해당 네트워크에서 사용될 토큰을 토큰리스트에 추가합니다. 
+
+## BOASwap Contract
 #### 1.env 환경변수 추가
 ```
 URL_SEPOLIA=https://sepolia.infura.io/v3/0128f6...
@@ -118,7 +159,99 @@ SEPOLIA = 11155111,
 npm publish
 ```
 
-### BOASwap Web
+## Token List
+https://github.com/she110ff/uniswap-interface/blob/main/boaswap-interface/src/tokens.json 에 추가된 네트워크의 토큰을 추가합니다. 
+
+** 추후 토큰 주소는 변경 예정입니다.
+
+#### 1. 샘플
+```
+{
+  "name": "BIZBOA Menu",
+  "logoURI": "https://raw.githubusercontent.com/PureStake/moonbase-mintableERC20/main/mintableERC20-interface/public/logos/White_Icon.svg",
+  "keywords": ["bizboa", "tokens", "uniswap"],
+  "timestamp": "2022-05-10T00:00:00+00:00",
+  "tokens": [
+    {
+      "address": "0xfE5D3c52F7ee9aa32a69b96Bfbb088Ba0bCd8EfC",
+      "chainId": 1281,
+      "name": "A Game Token",
+      "symbol": "GT-A",
+      "decimals": 18,
+      "tags": ["TOKEN"],
+      "logoURI": "https://raw.githubusercontent.com/PureStake/moonbase-mintableERC20/main/mintableERC20-interface/public/logos/White_Icon.svg"
+    },    
+    
+    ...
+    
+    {
+      "address": "0x05c2fa4D4eDCDad6F8CF8cF44110dE71B6B22cee",
+      "chainId": 3,
+      "name": "BOA",
+      "symbol": "BOA",
+      "decimals": 7,
+      "tags": ["BOA"],
+      "logoURI": "https://raw.githubusercontent.com/PureStake/moonbase-mintableERC20/main/mintableERC20-interface/public/logos/White_Icon.svg"
+    }
+  ],
+  "version": {
+    "major": 2,
+    "minor": 0,
+    "patch": 3
+  }
+}
+```
+
+### injected to be configured
+If chain IDs don't exist in the contant `injected` in `tigger-web/src/connector.index.ts`, connections are failed.
+```
+export const injected = new InjectedConnector({
+ supportedChainIds: [1, 2, 12301, 1281, 2, 2151, 31337, 7212301, 7212302, 7212303]
+});
+```
+The details are described in the document, [Tigger-Summary](https://docs.google.com/document/d/11M0V9ECldZ7PioU8JPOY9Xr28cOVF0kHaGqozHmylj0/edit?tab=t.0).
+
+
+
+## Add a local dependency for tigger-swap-sdk
+In tigger-swap-sdk folder
+- `yarn build`
+- `yarn link`
+
+In tigger-web using tigger-web folder
+- Add a local dependency for tigger-swap-sdk with yarn
+  ```
+  yarn add -D file:/Users/jay/work/tigger-swap-sdk 
+  ```
+- `yarn link "tigger-swap-sdk"` 
+- `yarn list`
+
+## Add network
+네트워크 추가에 대한 다음 설명은 sepolia 네트워크를 예를 들어 관련 정보의 추가 및 변경 순서에 따라서 설명합니다.
+
+
+#### 2. 엔티티
+* name : 토큰 리스트 메뉴의 명칭으로 팝업 화면등에서 사용합니다. 
+* logoURI : 토큰 리스트 메뉴의 로고이며 팝업 화면등에서 사용합니다.
+* keyword : 토큰 리스트의 키워드를 나열합니다.
+* timestamp : 토큰 리스트 작성 시점에 대한 기술입니다.
+* tokens : 토큰 목록 배열입니다. 
+  * address : 컨트렉트 주소 체크섬
+  * chainId : 토큰이 배포된 네트워크 체인 ID
+  * name : 토큰 이름, 1~40
+  * symbol : 토큰 심볼, alphanumeric, 1~20
+  * decimals : 0 ~ 255
+  * tags : 토큰과 관련된 식별 정보, ~ 10
+  * logoURI : 토큰 로고 URI
+* versions
+  * major : 토큰이 삭제되었거나 주소가 변경되었을 때 반드시 변경
+  * minor : 토큰이 추가되었을 때 반드시 변경
+  * patch : major, minor 이외의 정보가 변경되었을 때 변경
+
+https://github.com/Uniswap/token-lists/blob/main/src/tokenlist.schema.json
+
+# Old Information
+## BOASwap Web
 #### 1. BOASwap SDK upgrade
 ```
 # 현재는 상시적 업그레이드로 인하여 최신버전을 사용하고 있으나,
@@ -174,67 +307,3 @@ supportedChainIds: [1, 2, 11155111, 1281, 1287, 1288]
 ```
 #### 8. 토큰 추가
 네크워크 추가 이후에는 해당 네트워크에서 사용될 토큰을 토큰리스트에 추가합니다. 
-
-## Token List
-https://github.com/she110ff/uniswap-interface/blob/main/boaswap-interface/src/tokens.json 에 추가된 네트워크의 토큰을 추가합니다. 
-
-** 추후 토큰 주소는 변경 예정입니다.
-
-#### 1. 샘플
-```
-{
-  "name": "BIZBOA Menu",
-  "logoURI": "https://raw.githubusercontent.com/PureStake/moonbase-mintableERC20/main/mintableERC20-interface/public/logos/White_Icon.svg",
-  "keywords": ["bizboa", "tokens", "uniswap"],
-  "timestamp": "2022-05-10T00:00:00+00:00",
-  "tokens": [
-    {
-      "address": "0xfE5D3c52F7ee9aa32a69b96Bfbb088Ba0bCd8EfC",
-      "chainId": 1281,
-      "name": "A Game Token",
-      "symbol": "GT-A",
-      "decimals": 18,
-      "tags": ["TOKEN"],
-      "logoURI": "https://raw.githubusercontent.com/PureStake/moonbase-mintableERC20/main/mintableERC20-interface/public/logos/White_Icon.svg"
-    },    
-    
-    ...
-    
-    {
-      "address": "0x05c2fa4D4eDCDad6F8CF8cF44110dE71B6B22cee",
-      "chainId": 3,
-      "name": "BOA",
-      "symbol": "BOA",
-      "decimals": 7,
-      "tags": ["BOA"],
-      "logoURI": "https://raw.githubusercontent.com/PureStake/moonbase-mintableERC20/main/mintableERC20-interface/public/logos/White_Icon.svg"
-    }
-  ],
-  "version": {
-    "major": 2,
-    "minor": 0,
-    "patch": 3
-  }
-}
-```
-
-#### 2. 엔티티
-* name : 토큰 리스트 메뉴의 명칭으로 팝업 화면등에서 사용합니다. 
-* logoURI : 토큰 리스트 메뉴의 로고이며 팝업 화면등에서 사용합니다.
-* keyword : 토큰 리스트의 키워드를 나열합니다.
-* timestamp : 토큰 리스트 작성 시점에 대한 기술입니다.
-* tokens : 토큰 목록 배열입니다. 
-  * address : 컨트렉트 주소 체크섬
-  * chainId : 토큰이 배포된 네트워크 체인 ID
-  * name : 토큰 이름, 1~40
-  * symbol : 토큰 심볼, alphanumeric, 1~20
-  * decimals : 0 ~ 255
-  * tags : 토큰과 관련된 식별 정보, ~ 10
-  * logoURI : 토큰 로고 URI
-* versions
-  * major : 토큰이 삭제되었거나 주소가 변경되었을 때 반드시 변경
-  * minor : 토큰이 추가되었을 때 반드시 변경
-  * patch : major, minor 이외의 정보가 변경되었을 때 변경
-
-https://github.com/Uniswap/token-lists/blob/main/src/tokenlist.schema.json
-

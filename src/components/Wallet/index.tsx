@@ -159,15 +159,15 @@ export const NETWORK_LABELS: { [chainId in ChainId]: string[] } = {
     "http://127.0.0.1:8545"
   ],
   [ChainId.STANDALONE]: [
-    "Standalone(Biznet)",
-    "ico-boa",
-    STAGE === "LOCAL" ? "invisible" : STAGE === "PROD" ? "invisible" : "invisible",
-    "0x501",
+    "Standalone",
+    "ico-eth",
+    STAGE === "LOCAL" ? "visible" : STAGE === "PROD" ? "invisible" : "visible",
+    "7212309",
     "Ethereum ETH",
-    "BOA",
+    "ETH",
     "18",
-    "http://127.0.0.1:9933",
-    "http://127.0.0.1:9933"
+    "http://localhost:8585",
+    "https://sepolia.etherscan.io"
   ],
   [ChainId.SEPOLIA]: [
     "Sepolia",
@@ -282,8 +282,8 @@ export default function Wallet({ selectedChainId, onChangeBridge }: CurProps) {
   const { chainId } = useActiveWeb3React();
   let currentChainId = chainId as ChainId;
   if (currentChainId === undefined) {
-    selectedChainId = ChainId.MARIGOLD;
-    currentChainId = ChainId.MARIGOLD;
+    selectedChainId = ChainId.STANDALONE;
+    currentChainId = ChainId.STANDALONE;
   }
 
   const node = useRef<HTMLDivElement>();

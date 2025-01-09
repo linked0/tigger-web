@@ -30,7 +30,7 @@ const DEVSCAN_PREFIXES: { [chainId in ChainId]: string } = {
   11155111: "https://sepolia.etherscan.io",
   12301: "https://sepolia.etherscan.io",
   31337: "xxxxxxxxxxx",
-  1281: "xxxxxxxxxxx",
+  7212309: "https://sepolia.etherscan.io",
   7212303: "https://testnet-scan.bosagora.org",
   7212302: "https://testnet-scan.bosagora.org",
   7212301: "https://scan.bosagora.org"
@@ -107,8 +107,8 @@ export function getRouterContract(chainId: number, library: Web3Provider, accoun
 }
 
 export function getBridgeBOATokenContract(chainId: number, library: Web3Provider, account?: string): Contract {
-  console.log("BRIDGE_NETWORKS", BRIDGE_NETWORKS[chainId as ChainId]);
-  console.log("TOKEN_BRIDGE_NETWORKS", TOKEN_BRIDGE_NETWORKS[chainId as ChainId]);
+  // console.log("BRIDGE_NETWORKS", BRIDGE_NETWORKS[chainId as ChainId]);
+  // console.log("TOKEN_BRIDGE_NETWORKS", TOKEN_BRIDGE_NETWORKS[chainId as ChainId]);
   return getContract(BRIDGE_NETWORKS[chainId as ChainId], BOATokenBridge_ABI.abi, library, account);
 }
 
