@@ -10,6 +10,7 @@ export const ROUTER_ADDRESS: { [key: string]: string } = {
   [ChainId.STANDALONE]: CONTRACT_ADDRESS_NETWORKS[ChainId.STANDALONE].routerv2,
   [ChainId.SEPOLIA]: CONTRACT_ADDRESS_NETWORKS[ChainId.SEPOLIA].routerv2,
   [ChainId.MARIGOLD]: CONTRACT_ADDRESS_NETWORKS[ChainId.MARIGOLD].routerv2,
+  [ChainId.MARIGOLD_LOCALNET]: CONTRACT_ADDRESS_NETWORKS[ChainId.MARIGOLD_LOCALNET].routerv2,
   [ChainId.BIZTESTNET]: CONTRACT_ADDRESS_NETWORKS[ChainId.BIZTESTNET].routerv2,
   [ChainId.BIZDEVNET]: CONTRACT_ADDRESS_NETWORKS[ChainId.BIZDEVNET].routerv2,
   [ChainId.BIZNET]: CONTRACT_ADDRESS_NETWORKS[ChainId.BIZNET].routerv2
@@ -17,10 +18,11 @@ export const ROUTER_ADDRESS: { [key: string]: string } = {
 
 export const OPPOSITE_CHAIN: { [key: string]: number } = {
   [ChainId.HARDHAT]: ChainId.STANDALONE,
-  [ChainId.STANDALONE]: ChainId.BIZDEVNET,
+  [ChainId.STANDALONE]: ChainId.MARIGOLD_LOCALNET,
   [ChainId.MAINNET]: ChainId.BIZNET,
   [ChainId.SEPOLIA]: ChainId.BIZTESTNET,
   [ChainId.MARIGOLD]: ChainId.BIZDEVNET,
+  [ChainId.MARIGOLD_LOCALNET]: ChainId.STANDALONE,
   [ChainId.BIZTESTNET]: ChainId.SEPOLIA,
   [ChainId.BIZDEVNET]: ChainId.MARIGOLD,
   [ChainId.BIZNET]: ChainId.MAINNET
@@ -28,16 +30,23 @@ export const OPPOSITE_CHAIN: { [key: string]: number } = {
 
 export const DIRECTION_CHAIN: { [key: string]: number } = {
   [ChainId.HARDHAT]: BridgeDirection.ETHNET_BIZNET,
-  [ChainId.STANDALONE]: BridgeDirection.ETHNET_BIZNET,
+  [ChainId.STANDALONE]: BridgeDirection.BIZNET_ETHNET,
   [ChainId.MAINNET]: BridgeDirection.ETHNET_BIZNET,
   [ChainId.BIZNET]: BridgeDirection.BIZNET_ETHNET,
   [ChainId.SEPOLIA]: BridgeDirection.ETHNET_BIZNET,
   [ChainId.MARIGOLD]: BridgeDirection.ETHNET_BIZNET,
+  [ChainId.MARIGOLD_LOCALNET]: BridgeDirection.ETHNET_BIZNET,
   [ChainId.BIZTESTNET]: BridgeDirection.BIZNET_ETHNET,
   [ChainId.BIZDEVNET]: BridgeDirection.BIZNET_ETHNET
 };
 
-export const SWAPABLE_CHAIN: ChainId[] = [ChainId.STANDALONE, ChainId.BIZNET, ChainId.BIZTESTNET];
+export const SWAPABLE_CHAIN: ChainId[] = [
+  ChainId.STANDALONE,
+  ChainId.MARIGOLD,
+  ChainId.MARIGOLD_LOCALNET,
+  ChainId.BIZNET,
+  ChainId.BIZTESTNET
+];
 
 export const BOA_SYMBOL = "BOA";
 export const TOKEN_TAGS = {
@@ -103,6 +112,7 @@ const WDEV_ONLY: ChainTokenList = {
   [ChainId.STANDALONE]: [WDEV[ChainId.STANDALONE]],
   [ChainId.SEPOLIA]: [WDEV[ChainId.SEPOLIA]],
   [ChainId.MARIGOLD]: [WDEV[ChainId.MARIGOLD]],
+  [ChainId.MARIGOLD_LOCALNET]: [WDEV[ChainId.MARIGOLD_LOCALNET]],
   [ChainId.BIZTESTNET]: [WDEV[ChainId.BIZTESTNET]],
   [ChainId.BIZDEVNET]: [WDEV[ChainId.BIZDEVNET]],
   [ChainId.BIZNET]: [WDEV[ChainId.BIZNET]]

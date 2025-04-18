@@ -45,6 +45,7 @@ const EMPTY_LIST: TokenAddressMap = {
   [ChainId.STANDALONE]: {},
   [ChainId.SEPOLIA]: {},
   [ChainId.MARIGOLD]: {},
+  [ChainId.MARIGOLD_LOCALNET]: {},
   [ChainId.BIZTESTNET]: {},
   [ChainId.BIZDEVNET]: {},
   [ChainId.BIZNET]: {}

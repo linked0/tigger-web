@@ -159,12 +159,12 @@ export const NETWORK_LABELS: { [chainId in ChainId]: string[] } = {
     "http://127.0.0.1:8545"
   ],
   [ChainId.STANDALONE]: [
-    "Standalone",
-    "ico-eth",
+    "PooStandalone",
+    "ico-boa",
     STAGE === "LOCAL" ? "visible" : STAGE === "PROD" ? "invisible" : "visible",
     "7212309",
-    "Ethereum ETH",
-    "ETH",
+    "Poohnet POO",
+    "POO",
     "18",
     "http://localhost:8585",
     "https://sepolia.etherscan.io"
@@ -191,38 +191,49 @@ export const NETWORK_LABELS: { [chainId in ChainId]: string[] } = {
     "http://localhost:8545",
     "https://sepolia.etherscan.io"
   ],
+  [ChainId.MARIGOLD_LOCALNET]: [
+    "Marigold Localnet",
+    "ico-eth",
+    STAGE === "LOCAL" ? "visible" : STAGE === "PROD" ? "invisible" : "visible",
+    "12309",
+    "Ethereum ETH",
+    "ETH",
+    "18",
+    "http://localhost:8885",
+    "https://sepolia.etherscan.io"
+  ],
   [ChainId.BIZTESTNET]: [
-    "PoohTestNet",
+    "PooNet Testnet",
     "ico-boa",
     STAGE === "LOCAL" ? "invisible" : STAGE === "PROD" ? "invisible" : "visible",
     "7212303",
-    "Poohnet POO",
+    "PooNet POO",
     "POO",
     "18",
     "http://3.37.37.195:8545",
     "https://testnet-scan.bosagora.org"
   ],
   [ChainId.BIZDEVNET]: [
-    "PoohDevNet",
+    "PooNet Devnet",
     "ico-boa",
     STAGE === "LOCAL" ? "visible" : STAGE === "PROD" ? "invisible" : "visible",
     "7212302",
-    "Poohnet POO",
+    "PooNet POO",
     "POO",
     "18",
     "http://3.37.37.195:8545",
     "https://sepolia.etherscan.io"
   ],
   [ChainId.BIZNET]: [
-    "BizNet    ",
+    "PooNet Mainnet",
     "ico-boa",
     STAGE === "LOCAL" ? "invisible" : STAGE === "PROD" ? "visible" : "invisible",
     "7212301",
-    "Bosagora BOA",
+    "PooNet POO",
     "BOA",
-    "18",
-    "https://mainnet.bosagora.org",
-    "https://scan.bosagora.org"
+    "POO",
+    "https://mainnet.poonet.org",
+    "https://scan.poonet.org"
   ]
 };
 interface CurProps {
@@ -280,10 +291,11 @@ export async function changeNetwork(id: string, onChangeBridge: ((chainId: strin
 }
 export default function Wallet({ selectedChainId, onChangeBridge }: CurProps) {
   const { chainId } = useActiveWeb3React();
+  console.log("Wallet chainId :", chainId);
   let currentChainId = chainId as ChainId;
   if (currentChainId === undefined) {
-    selectedChainId = ChainId.STANDALONE;
-    currentChainId = ChainId.STANDALONE;
+    selectedChainId = ChainId.MARIGOLD_LOCALNET;
+    currentChainId = ChainId.MARIGOLD_LOCALNET;
   }
 
   const node = useRef<HTMLDivElement>();
