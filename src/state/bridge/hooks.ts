@@ -100,8 +100,13 @@ export function useDerivedBridgeInfo(
     recipient
   } = useBridgeState();
 
+  const defaultCurrency = useCurrency("ETH");
   const tInputCurrency = useCurrency(inputCurrencyId);
-  const inputCurrency = inputCurrencyId !== "" && inputCurrencyId !== undefined ? tInputCurrency : undefined;
+  const inputCurrency =
+    inputCurrencyId != null && inputCurrencyId !== "" && inputCurrencyId !== "NONE" ? tInputCurrency : defaultCurrency;
+  console.log("inputCurrency", inputCurrency);
+  console.log("inputCurrency", inputCurrency);
+
   // console.log("inputCurrencyId", inputCurrencyId);
   const oppositeChainId = useMemo(() => {
     if (chainId) {

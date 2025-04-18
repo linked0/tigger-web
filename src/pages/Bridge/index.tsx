@@ -79,7 +79,7 @@ export default function Networks() {
     bridgeType as CurrencyType
   );
 
-  // console.log("currencies", currencies);
+  console.log("currencies", currencies);
 
   const outputCurrency = currencies[Field.OUTPUT];
   const bridgeCurrencyType = useMemo(() => {

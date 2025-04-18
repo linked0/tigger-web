@@ -1,6 +1,6 @@
 # Tigger Web Project
 
-## Build
+## Build & Run
 
 Install packages:
 
@@ -25,146 +25,170 @@ When `ERR_OSSL_EVP_UNSUPPORTED` error occurs, set the following environment vari
 export NODE_OPTIONS=--openssl-legacy-provider
 ```
 
-## BOASwap Web
+## Set network information
+**🪀새로운 체인을 추가했을때, 수정해야하는 부분**
 
-#### 1. connectors>index.ts
+#### 1. `src/connectors/index.ts`
+지원가능한 ChainId를 추가
 ```
-# 지원가능한 ChainId를 추가합니다.
-
-supportedChainIds: [1, 2, 11155111, 1281, 1287, 1288]
+export const injected = new InjectedConnector({
+  supportedChainIds: [1, 2, 12301, 12309, 7212309, 2, 2151, 31337, 7212301, 7212302, 7212303]
+});
 ```
+If chain IDs don't exist in the contant `injected` in `tigger-web/src/connector.index.ts`, connections are failed.
 
-#### 2. constants>index.ts
+The details are described in the document, [Tigger-Summary](https://docs.google.com/document/d/11M0V9ECldZ7PioU8JPOY9Xr28cOVF0kHaGqozHmylj0/edit?tab=t.0).
+
+#### 2. `src/components/Wallet/index.tsx`
+새로 추가되는 체인 정보
 ```
-# ROUTER_ADDRESS를 추가합니다. 
-
-[ChainId.SEPOLIA]: CONTRACT_ADDRESS_NETWORKS[ChainId.SEPOLIA].routerv2,
-
-# WDEV_ONLY의 토크리스트를 추가합니다.
-
-[ChainId.SEPOLIA]: [WDEV[ChainId.SEPOLIA]]
-```
-#### 3. utils>index.ts
-```
-# DEVSCAN_PREFIXES에 Chain Id와 스캔 링크를 추가합니다.
-
-7212309: 'https://sepolia.etherscan.io',
-```
-
-#### 4. set default chain id
-Near 281 line in `src/components/Wallet/index.tsx`
-
-```
-export default function Wallet({ selectedChainId, onChangeBridge }: CurProps) {
-  const { chainId } = useActiveWeb3React();
-  let currentChainId = chainId as ChainId;
-  if (currentChainId === undefined) {
-    selectedChainId = ChainId.STANDALONE;
-    currentChainId = ChainId.STANDALONE;
-  }
-```
-
-#### 5. set chain info in index.tsx
-`src/components/Wallet/index.tsx`
-```
-  [ChainId.STANDALONE]: [
-    "Standalone",
+[ChainId.MARIGOLD_LOCALNET]: [
+    "Marigold Localnet",
     "ico-eth",
-    STAGE === "LOCAL" ? "visible" : STAGE === "PROD" ? "invisible" : "invisible",
-    "7212309",
+    STAGE === "LOCAL" ? "visible" : STAGE === "PROD" ? "invisible" : "visible",
+    "12309",
     "Ethereum ETH",
     "ETH",
     "18",
-    "http://localhost:8585",
-    "http://127.0.0.1:9933"
+    "http://localhost:8885",
+    "https://sepolia.etherscan.io"
   ],
 ```
 
-#### 6. 토큰 추가
+디폴트 `selectedChainId`, `currentChainId` 세팅
+```
+export default function Wallet({ selectedChainId, onChangeBridge }: CurProps) {
+  const { chainId } = useActiveWeb3React();
+  console.log("Wallet chainId :", chainId);
+  let currentChainId = chainId as ChainId;
+  if (currentChainId === undefined) {
+    selectedChainId = ChainId.MARIGOLD_LOCALNET;
+    currentChainId = ChainId.MARIGOLD_LOCALNET;
+  }
+```
+
+#### 3. `src/constants/index.ts`
+Router, Opposite Chain, Direction, WDEV_ONLY 추가
+
+##### ROUTER_ADDRESS
+```
+export const ROUTER_ADDRESS: { [key: string]: string } = {
+   [ChainId.HARDHAT]: CONTRACT_ADDRESS_NETWORKS[ChainId.HARDHAT].routerv2,
+   [ChainId.STANDALONE]: CONTRACT_ADDRESS_NETWORKS[ChainId.STANDALONE].routerv2,
+   [ChainId.SEPOLIA]: CONTRACT_ADDRESS_NETWORKS[ChainId.SEPOLIA].routerv2,
+   [ChainId.MARIGOLD]: CONTRACT_ADDRESS_NETWORKS[ChainId.MARIGOLD].routerv2,
+   [ChainId.MARIGOLD_LOCALNET]: CONTRACT_ADDRESS_NETWORKS[ChainId.MARIGOLD_LOCALNET].routerv2,
+   ...
+```
+
+##### OPPOSITE_CHAIN
+```
+export const OPPOSITE_CHAIN: { [key: string]: number } = {
+   [ChainId.HARDHAT]: ChainId.STANDALONE,
+   [ChainId.STANDALONE]: ChainId.MARIGOLD_LOCALNET,
+   ...
+```
+
+##### DIRECTION_CHAIN
+```
+export const DIRECTION_CHAIN: { [key: string]: number } = {
+   [ChainId.HARDHAT]: BridgeDirection.ETHNET_BIZNET,
+   [ChainId.STANDALONE]: BridgeDirection.ETHNET_BIZNET,
+   [ChainId.STANDALONE]: BridgeDirection.BIZNET_ETHNET,
+   ...
+```
+
+##### WDEV_ONLY
+```
+const WDEV_ONLY: ChainTokenList = {
+   [ChainId.MAINNET]: [WDEV[ChainId.MAINNET]],
+   [ChainId.HARDHAT]: [WDEV[ChainId.HARDHAT]],
+   ...
+   [ChainId.MARIGOLD_LOCALNET]: [WDEV[ChainId.MARIGOLD_LOCALNET]],
+   ...
+```
+
+#### 4. `src/constants/multicall/index.ts`
+Multicall, Bridge, Token Bridge 컨트랙트 매칭
+```
+const MULTICALL_NETWORKS: { [chainId in ChainId]: string } = {
+  ...
+  [ChainId.MARIGOLD_LOCALNET]: CONTRACT_ADDRESS_NETWORKS[ChainId.MARIGOLD_LOCALNET].multicall,
+  ...
+};
+
+const BRIDGE_NETWORKS: { [chainId in ChainId]: string } = {
+  ...
+  [ChainId.MARIGOLD_LOCALNET]: CONTRACT_ADDRESS_NETWORKS[ChainId.MARIGOLD_LOCALNET].bridge,
+  ...
+};
+
+const TOKEN_BRIDGE_NETWORKS: { [chainId in ChainId]: string } = {
+  ...
+  [ChainId.MARIGOLD_LOCALNET]: CONTRACT_ADDRESS_NETWORKS[ChainId.MARIGOLD_LOCALNET].tokenBridge,
+  ...
+};
+```
+
+#### 5. `src/hooks/useContract.ts`
+`useENSRegistrarContract` 세팅
+```
+export function useENSRegistrarContract(withSignerIfPossible?: boolean): Contract | null {
+  ...
+  if (chainId) {
+    switch (chainId) {
+      ...
+      case ChainId.MARIGOLD_LOCALNET:
+        break;
+      ...
+    }
+  }
+  return useContract(address, ENS_ABI, withSignerIfPossible);
+}
+```
+
+#### 6. `src/state/lists/hooks.ts`
+`TokenAddressMap` 세팅
+```
+const EMPTY_LIST: TokenAddressMap = {
+  ...
+  [ChainId.MARIGOLD_LOCALNET]: {},
+  ...
+};
+```
+
+#### 7. `src/utils/index.ts`
+`DEVSCAN_PREFIXES` 세팅, 항목만 추가하고 아무값이나 써도 됨.
+```
+const DEVSCAN_PREFIXES: { [chainId in ChainId]: string } = {
+  ...
+  12309: "https://marigoldlocal.etherscan.io",
+  ...
+};
+```
+
+#### 8. Setting Environment Variables in .env or .env.dev
+```
+# ETHEREUM_LOCAL
+REACT_APP_ETHEREUM_URL="http://localhost:8885"
+REACT_APP_ETHEREUM_CHAIN_ID="12309"
+
+# BIZNET_LOCAL
+REACT_APP_BIZNET_URL="http://localhost:8585"
+REACT_APP_BIZNET_CHAIN_ID="7212309"
+```
+
+#### 9. Token List
+스왑에서 사용되는 정보를 앱 시작시 처리하기 위한 부분임. (**추가 분석 필요함**)
+
+On startup, your reducer’s initialState.byUrl[DEFAULT_TOKEN_LIST_URL].current is set to the contents of tokens.json (or tokens_test.json in non-PROD).
+
 네크워크 추가 이후에는 해당 네트워크에서 사용될 토큰을 토큰리스트에 추가합니다. 
-
-## BOASwap Contract
-#### 1.env 환경변수 추가
-```
-URL_SEPOLIA=https://sepolia.infura.io/v3/0128f6...
-CHAIN_ID_SEPOLIA=11155111
-PRIVATE_KEY_SEPOLIA=0x99b3c12...
-```
-#### 2.hardhat.config.js 에 네트워크 추가
-```
-  sepolia: {
-     url: process.env.URL_SEPOLIA,
-     accounts: [process.env.PRIVATE_KEY_SEPOLIA],
-     chainId: parseInt(process.env.CHAIN_ID_SEPOLIA),
-     gas: 2100000,
-     gasPrice: 8000000000
-  },
-```
-#### 3.배포 스크립트 작성
-```
-# 1. 필요한 경우에만 테스트용 ERC20 토큰을 생성 로직을 포합시킵니다.
-# 2. 배포 주소가 프린트 되도록 합니다.
-
-script > sepolia-deploy-factory.js
-```
-#### 4.package.json에 실행 스크립트 추가
-```
-"sepolia:deploy": "hardhat run --network sepolia scripts/sepolia-deploy-factory.js"
-```
-#### 5.컨트랙트 배포
-```
-# 배포된 컨트랙트 주소를 복사하여 SDK, WEB에서 사용합니다.
-
-yarn sepolia:deploy
-```
-
-### BOASwap SDK
-#### 1.constant.ts > ChainId 추가
-```
-SEPOLIA = 11155111,
-```
-#### 2.constant.ts > BOASwap Contract 배포 주소를 추가합니다.
-```
-  # CONTRACT_ADDRESS_NETWORKS
-  [ChainId.SEPOLIA]: {
-    WETH: '0xA0be228CA989c4225682EbfaF1a372298993bdB9',
-    factory: '0x96BfB45907879216CF504E81aFB2948048249A12',
-    routerv2: '0x761d69Ba08C571AE2247be65f42e79E4126ae4DF',
-    multicall: '0x5869297F41dD79Df34818c5f00a0814933657309'
-  },
-```
-#### 3.tokens.ts > WDEV에 WETH 주소값을 매핑
-```
-  # WETH를 실제로 사용하지는 않지만 관련 코드를 유지합니다.
-  
-  [ChainId.SEPOLIA]: new Token(
-      ChainId.SEPOLIA,
-      '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-      CONTRACT_ADDRESS_NETWORKS[ChainId.SEPOLIA].WETH,
-      18,
-      'WETH',
-      'Wrapped Ether'
-  ),
-```
-#### 4.npm 버전 변경
-```
-# 일반적인 경우 patch version을 변경합니다.
-
-"version": "0.8.4",
-```
-#### 5.npm publish
-```
-# bosagora팀 계정으로 배포합니다.
-
-npm publish
-```
-
-## Token List
 https://github.com/she110ff/uniswap-interface/blob/main/boaswap-interface/src/tokens.json 에 추가된 네트워크의 토큰을 추가합니다. 
-
+ 
 ** 추후 토큰 주소는 변경 예정입니다.
 
-#### 1. 샘플
+##### (1) 샘플
 ```
 {
   "name": "BIZBOA Menu",
@@ -202,35 +226,7 @@ https://github.com/she110ff/uniswap-interface/blob/main/boaswap-interface/src/to
 }
 ```
 
-### injected to be configured
-If chain IDs don't exist in the contant `injected` in `tigger-web/src/connector.index.ts`, connections are failed.
-```
-export const injected = new InjectedConnector({
- supportedChainIds: [1, 2, 12301, 1281, 2, 2151, 31337, 7212301, 7212302, 7212303]
-});
-```
-The details are described in the document, [Tigger-Summary](https://docs.google.com/document/d/11M0V9ECldZ7PioU8JPOY9Xr28cOVF0kHaGqozHmylj0/edit?tab=t.0).
-
-
-
-## Add a local dependency for tigger-swap-sdk
-In tigger-swap-sdk folder
-- `yarn build`
-- `yarn link`
-
-In tigger-web using tigger-web folder
-- Add a local dependency for tigger-swap-sdk with yarn
-  ```
-  yarn add -D file:/Users/jay/work/tigger-swap-sdk 
-  ```
-- `yarn link "tigger-swap-sdk"` 
-- `yarn list`
-
-## Add network
-네트워크 추가에 대한 다음 설명은 sepolia 네트워크를 예를 들어 관련 정보의 추가 및 변경 순서에 따라서 설명합니다.
-
-
-#### 2. 엔티티
+##### (2) 엔티티
 * name : 토큰 리스트 메뉴의 명칭으로 팝업 화면등에서 사용합니다. 
 * logoURI : 토큰 리스트 메뉴의 로고이며 팝업 화면등에서 사용합니다.
 * keyword : 토큰 리스트의 키워드를 나열합니다.
@@ -249,61 +245,3 @@ In tigger-web using tigger-web folder
   * patch : major, minor 이외의 정보가 변경되었을 때 변경
 
 https://github.com/Uniswap/token-lists/blob/main/src/tokenlist.schema.json
-
-# Old Information
-## BOASwap Web
-#### 1. BOASwap SDK upgrade
-```
-# 현재는 상시적 업그레이드로 인하여 최신버전을 사용하고 있으나,
-# 추후에 특정 버전을 명시해야 합니다. 
-
-yarn upgrade tigger-swap-sdk
-```
-#### 2. boaswap_address.ts 
-tigger-swap-sdk를 사용함으로 더 이상 아래의 세팅을 쓰지 않음.
-```
-  # CONTRACT_ADDRESS_NETWORKS에 BOASwap Contract 배포 주소를 추가합니다. 
-
-  [ChainId.SEPOLIA]: {
-    WETH: '0xA0be228CA989c4225682EbfaF1a372298993bdB9',
-    factory: '0x96BfB45907879216CF504E81aFB2948048249A12',
-    routerv2: '0x761d69Ba08C571AE2247be65f42e79E4126ae4DF',
-    multicall: '0x5869297F41dD79Df34818c5f00a0814933657309'
-  },
-```
-#### 3. Components>Header>index.tsx
-```
-# ChainId의 문구를 NETWORK_LABELS에 추가합니다.
-
-[ChainId.SEPOLIA]: 'SEPOLIA Network',
-```
-#### 4. connectors>index.ts
-```
-# 지원가능한 ChainId를 추가합니다.
-
-supportedChainIds: [1, 2, 11155111, 1281, 1287, 1288]
-```
-#### 5. constants>multicall>index.ts
-```
-# MULTICALL_NETWORKS를 추가합니다.
-
-[ChainId.SEPOLIA]: CONTRACT_ADDRESS_NETWORKS[ChainId.SEPOLIA].multicall,
-```
-#### 6. constants>index.ts
-```
-# ROUTER_ADDRESS를 추가합니다. 
-
-[ChainId.SEPOLIA]: CONTRACT_ADDRESS_NETWORKS[ChainId.SEPOLIA].routerv2,
-
-# WDEV_ONLY의 토크리스트를 추가합니다.
-
-[ChainId.SEPOLIA]: [WDEV[ChainId.SEPOLIA]]
-```
-#### 7. utils>index.ts
-```
-# DEVSCAN_PREFIXES에 스캔 링크를 추가합니다.
-
-3: 'https://sepolia.etherscan.io',
-```
-#### 8. 토큰 추가
-네크워크 추가 이후에는 해당 네트워크에서 사용될 토큰을 토큰리스트에 추가합니다. 

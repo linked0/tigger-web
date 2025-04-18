@@ -77,6 +77,8 @@ export function useENSRegistrarContract(withSignerIfPossible?: boolean): Contrac
         break;
       case ChainId.STANDALONE:
         break;
+      case ChainId.MARIGOLD_LOCALNET:
+        break;
       case ChainId.MARIGOLD:
         break;
       case ChainId.BIZDEVNET:

@@ -29,6 +29,7 @@ const DEVSCAN_PREFIXES: { [chainId in ChainId]: string } = {
   1: "https://etherscan.io",
   11155111: "https://sepolia.etherscan.io",
   12301: "https://sepolia.etherscan.io",
+  12309: "https://sepolia.etherscan.io",
   31337: "xxxxxxxxxxx",
   7212309: "https://sepolia.etherscan.io",
   7212303: "https://testnet-scan.bosagora.org",
