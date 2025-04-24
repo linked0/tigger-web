@@ -14,8 +14,7 @@ yarn install
 yarn upgrade tigger-swap-sdk
 ```
 
-Run:
-
+Run: 테스트시 Admin 키(ADMIN_KEY)와 주소를 이용
 ```
 yarn start:dev
 ```
